@@ -68,7 +68,7 @@ achieved using compiler emulation of larger ints.
 #include <errno.h>
 #include <dirent.h>
 #include <sys/stat.h>
-#include <sys/param.h>
+//#include <sys/param.h>
 
 
 
@@ -122,14 +122,21 @@ typedef DWORD LCID;
 #if defined(WIN32) || defined(__CYGWIN__) /* || defined(WINE) */
 /* Windows locale functions */
 #define WIN32_LCID
-/* Fuck including all those Win32 headers for only one function */
+#define WIN32_TIMESTAMP
+/* Fuck including all those Win32 headers for only 2 functions */
 #define WINAPI __stdcall
 /*
-Don't need to link with anything special to get this
-because it comes from libkernel32.a/kernel32.lib,
+Don't need to link with anything special to get these
+because they come from libkernel32.a/kernel32.lib,
 which is linked in by default on Win32 platforms
 */
 LCID WINAPI GetUserDefaultLCID(void);
+typedef struct _FILETIME {
+	DWORD dwLowDateTime;
+	DWORD dwHighDateTime;
+} FILETIME,* LPFILETIME;
+typedef void* HANDLE;
+DWORD WINAPI GetFileTime(HANDLE fh,LPFILETIME ctime,LPFILETIME atime,LPFILETIME mtime);
 #else
 /* FIXME: Locale functions for Unix/MacOS/Win16/VMS/...blah */
 #endif
@@ -144,8 +151,7 @@ DWORD hri = 1; /* Huffman reset interval  in 0x8000 byte blocks */
 DWORD wsc = 1; /* Window size code (ws in 0x8000 byte blocks) */
 DWORD ws = 15; /* Window size used by compressor */
 DWORD ihv = 3; /* Initial header version */
-/* FIXME: Timestamp unknown so just put zero for now */
-DWORD iht = 0 ; /* Initial header timestamp */
+DWORD iht = 0; /* Initial header timestamp */
 DWORD dhv = 1; /* Directory header version */
 DWORD rtv = 2; /* ResetTable version */
 DWORD dcs = 0x1000; /* Directory chunk size */
@@ -497,11 +503,31 @@ int main( int argc, char* argv[] ){
 
 		f = output_file_h = fopen(output_file,"wb");
 		if(f){
+			FILE* tf;
+			/* Get the initial header timestamp */
+			int fd = fileno(f);
+			{
+#ifdef WIN32_TIMESTAMP
+				FILETIME last_write_time;
+				HANDLE fh = (HANDLE) _get_osfhandle(fd);
+				if( GetFileTime(fh, NULL, NULL, &last_write_time) ){
+					/* I guess someone was a fan of the hitchhikers guide to the galaxy! */
+					iht = last_write_time.dwLowDateTime + 42;
+				} else printf( "WARNING: Could not get information for the initial header timestamp (using zero instead)\n" );
+#else
+				struct stat info;
+				if( ! fstat( fd, &info ) ){
+					/* I guess someone was a fan of the hitchhikers guide to the galaxy! */
+					/* FIXME: This is not very accurate on Win32, should it be used? */
+					iht = (DWORD)( (QWORD)info.st_mtime * (QWORD)100000000 + (QWORD)116444736000000000 ) + 42;
+				} else printf( "WARNING: Could not get information for the initial header timestamp (using zero instead)\n" );
+#endif
+			}
 			/*
 			We crunch all the input to a temp file first
 			FIXME: Figure out a way to do this last?
 			*/
-			FILE* tf = tmpfile();
+			tf = tmpfile();
 			if(tf){
 				lzx_data* lzxd;
 				lzx_results lzxr;

@@ -1,7 +1,6 @@
 Features:
 	Command line options (see below)
 	Get LCID from Unix
-	Initial header timestamp
 	HHP processing into CHM
 	Hard-linked files
 	Options used to expose assumptions in the Microsoft implementation

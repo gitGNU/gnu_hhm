@@ -1,4 +1,6 @@
-Thu, 22 Aug 2002 03:24:19 -0400 Pabs (pabs3@zip.to)
+Sun, 10 Aug 2003 06:23:53 +0800 Pabs (pabs@zip.to)
+
+	* hhm.c (main): Now use GetFileTime or fstat to get the iht
 
 	* hhm.c (main): Now certain about using GetUserDefaultLCID
 
