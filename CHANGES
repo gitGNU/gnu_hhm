@@ -1,5 +1,9 @@
 Thu, 22 Aug 2002 03:24:19 -0400 Pabs (pabs3@zip.to)
 
+	* hhm.c (main): Now certain about using GetUserDefaultLCID
+
+Thu, 22 Aug 2002 03:24:19 -0400 Pabs (pabs3@zip.to)
+
 	* Fixed & endian-portable version released to Matthew
 
 Mon, 5 Aug 2002 19:42:14 -0400 Pabs (pabs3@zip.to)

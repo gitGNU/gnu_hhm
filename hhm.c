@@ -126,13 +126,11 @@ typedef DWORD LCID;
 #warning "Probably shouldn't be using this until we know which function to get the LCID from"
 #define WINAPI __stdcall
 /*
-Don't need to link with anything special to get these functions
-because they come from libkernel32.a/kernel32.lib,
+Don't need to link with anything special to get this
+because it comes from libkernel32.a/kernel32.lib,
 which is linked in by default on Win32 platforms
 */
-LCID WINAPI GetSystemDefaultLCID(void);
-LCID WINAPI GetUserDefaultLCID(void); /* Most likely to be this function */
-LCID WINAPI GetThreadLocale(void);
+LCID WINAPI GetUserDefaultLCID(void);
 #else
 /* FIXME: Locale functions for Unix/MacOS/Win16/VMS/...blah */
 #endif
@@ -428,14 +426,7 @@ int main( int argc, char* argv[] ){
 	/* Fix up some stuff */
 	tqd = 1 + (1 << qrd); /* How often to spit out a quickref entry */
 #ifdef WIN32_LCID
-	/*
-		FIXME: Learn which Win32 LCID to use.
-		Currently the best guess is user since
-		that func is linked into the ITSS.DLL
-	*/
-	/* ihl = GetSystemDefaultLCID(); */
 	ihl = GetUserDefaultLCID();
-	/* ihl = GetThreadLocale(); */
 #else
 	/* FIXME: Learn how to get the right LCID from Unix */
 #endif
