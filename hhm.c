@@ -123,7 +123,6 @@ typedef DWORD LCID;
 /* Windows locale functions */
 #define WIN32_LCID
 /* Fuck including all those Win32 headers for only one function */
-#warning "Probably shouldn't be using this until we know which function to get the LCID from"
 #define WINAPI __stdcall
 /*
 Don't need to link with anything special to get this
