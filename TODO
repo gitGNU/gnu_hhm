@@ -1,0 +1,44 @@
+Features:
+	Command line options (see below)
+	Get LCID from Unix
+	Initial header timestamp
+	HHP processing into CHM
+	Hard-linked files
+	Options used to expose assumptions in the Microsoft implementation
+	   "     "    " test robustness of decompressor implementations
+	allow sequential compiling of several files
+	multi-threaded compilation - create directory during lzx compression
+	thread-safe compilation to allow simultaneous compiling of several files
+
+Command line options:
+	-i - input
+	-o - output
+	ITSF format version (2/3) - default=2 since it uses less space(8bytes)
+	Window size code - automatic mode that checks the total input length & guesses at which ws to use
+	Directory chunk size - plus an automatic mode that calculates an approximate optimum that doesn't waste too much space
+	Quickref density - optimise somehow
+	LCIDs - specify
+	Bugginess of Transform/List or don't add it.
+	Add directories?
+	Add paths?
+	Zero free space?
+	Subdivide frames?
+	Some zip/tar style options (-x etc)
+	Storing files uncompressed
+	Don't delete output on failure
+	optimise order of offset for related files (faster decompression)
+		eg if index.html relies on logo.png, styles.css & scripts.js, then crunch these files into the lzx near each other
+	look for files that have overlapping data & have them overlap in the LZX stream
+	--verbose
+	--version
+	--help
+	--compatible
+	print stats
+		amount of bytes wasted
+			in directory
+			in unknown/unused/useless(Transform/List) fields
+		compression ratio
+			per file
+			of lzx
+			of whole file
+		num files

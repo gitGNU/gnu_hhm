@@ -1,0 +1,76 @@
+hhm (HTML Help Maker) -- make an ITS file and in the future a CHM file
+Copyright (C) 2002 Pabs, <pabs3@zip.to>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 only
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software Foundation,
+Inc., 59 Temple Place, Suite 330, Boston, MA, 02111-1307, USA
+
+About:
+
+hhm is a program that currently makes ITS files. These are a kind of
+archive format, like ZIP, TAR, CAB etc. They utilise Microsoft's LZX
+compression to compress all the files in one big chunk. More info on
+the ITSF format, as well as a decompressor and an LZX compression
+library, is available from http://www.speakeasy.org/~russotto/chm/.
+In the future hhm will process HHP files & produce Compiled HTML Help
+files (CHMs). These are just ITS files with some special files inside
+them to implement the features of Microsoft's HTML Help program.
+
+Other implementations:
+
+Currently Microsoft's implementation exposed through an ITStorage interface
+from itss.dll is the only known implementation other than hhm. Having said
+that I suspect that KeyWorks Software has their own implementation that is
+used in producing installers for their software and ITS files or else the
+installer program that adds itss.dll to a system gives a different version
+to Win2K than to Win95 or the behaviour of itss.dll differs from Win95 to
+Win2K.
+
+Dependencies:
+
+hhm needs an LZX cruncher. I have used lzxcomp by Matthew T. Russotto,
+which is available from http://www.speakeasy.org/~russotto/chm/. If other
+LZX crunchers exist it shouldn't be too hard to adapt hhm to use their API.
+
+Building, usage & testing:
+
+#You should have done the next 2 lines already
+#wget http://bonedaddy.net/pabs3/hh/hhm-0.1-src.tar.gz
+#tar zxvf hhm-0.1-src.tar.gz
+wget http://www.speakeasy.org/~russotto/chm/lzx_compress.tar.gz
+tar zxvf lzx_compress.tar.gz &
+wget http://www.speakeasy.org/~russotto/chm/chmtools.tar.gz
+tar zxvf chmtools.tar.gz
+cd chmtools
+make
+cd ../lzx_compress
+make
+cd ../hhm
+ln -s lzx_compress ../lzx_compress
+make
+mkdir foo-bar
+cd foo-bar
+echo '<html><body>
+<p>This is a test file named index.html<br />
+It is part of the ITSF file named foo-bar.its</p>
+</body></html>' > index.html
+cd ..
+hhm foo-bar > /dev/null
+../chmtools/chmdump foo-bar.its foo-bar-extracted &> /dev/null
+diff -U foo-bar foo-bar-extracted > ../its-diff
+mv foo-bar.its ..
+cd ..
+less ./its-diff
+
+
+Enjoy
+Pabs <pabs3@zip.to>
