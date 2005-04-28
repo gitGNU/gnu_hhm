@@ -1,17 +1,21 @@
-Thu, 28 Apr 2005 14:36:24 +0800 Pabs (pabs@zip.to)
+Thu, 28 Apr 2005 14:39:39 +0800 Paul Wise <pabs@zip.to>
+
+	* CHANGES: Rename to ChangeLog
+
+Thu, 28 Apr 2005 14:36:24 +0800 Pabs <pabs@zip.to>
 
 	* README: Update copyright, download and contact info
 
-Sun, 10 Aug 2003 06:23:53 +0800 Pabs (pabs@zip.to)
+Sun, 10 Aug 2003 06:23:53 +0800 Pabs <pabs@zip.to>
 
 	* hhm.c (main): Now use GetFileTime or fstat to get the iht
 
 	* hhm.c (main): Now certain about using GetUserDefaultLCID
 
-Thu, 22 Aug 2002 03:24:19 -0400 Pabs (pabs3@zip.to)
+Thu, 22 Aug 2002 03:24:19 -0400 Pabs <pabs@zip.to>
 
 	* Fixed & endian-portable version released to Matthew
 
-Mon, 5 Aug 2002 19:42:14 -0400 Pabs (pabs3@zip.to)
+Mon, 5 Aug 2002 19:42:14 -0400 Pabs <pabs@zip.to>
 
 	* Buggy version released to Matthew T. Russotto (sorry)
