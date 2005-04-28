@@ -1,3 +1,7 @@
+Thu, 28 Apr 2005 14:36:24 +0800 Pabs (pabs@zip.to)
+
+	* README: Update copyright, download and contact info
+
 Sun, 10 Aug 2003 06:23:53 +0800 Pabs (pabs@zip.to)
 
 	* hhm.c (main): Now use GetFileTime or fstat to get the iht

@@ -1,5 +1,5 @@
 hhm (HTML Help Maker) -- make an ITS file and in the future a CHM file
-Copyright (C) 2002 Pabs, <pabs3@zip.to>
+Copyright (C) 2002,2005 Paul Wise, <pabs@zip.to>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,8 +44,8 @@ LZX crunchers exist it shouldn't be too hard to adapt hhm to use their API.
 Building, usage & testing:
 
 #You should have done the next 2 lines already
-#wget http://bonedaddy.net/pabs3/hh/hhm-0.1-src.tar.gz
-#tar zxvf hhm-0.1-src.tar.gz
+#wget http://savannah.nongnu.org/download/hhm/hhm-0.1.1.tar.gz
+#tar zxvf hhm-0.1.1.tar.gz
 wget http://www.speakeasy.org/~russotto/chm/lzx_compress.tar.gz
 tar zxvf lzx_compress.tar.gz &
 wget http://www.speakeasy.org/~russotto/chm/chmtools.tar.gz
@@ -73,4 +73,5 @@ less ./its-diff
 
 
 Enjoy
-Pabs <pabs3@zip.to>
+Pabs <pabs@zip.to>
+http://pabs.zip.to
