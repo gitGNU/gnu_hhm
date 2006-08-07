@@ -804,7 +804,7 @@ static int add_dir_contents( char*d ){
 		int n = 0;
 		struct stat st;
 		struct dirent* de;
-		while( de = readdir( dir ) ){
+		while( ( de = readdir( dir ) ) ){
 			chdir( d );
 			if( !strcmp( de->d_name, "." ) || !strcmp( de->d_name, ".." ) )
 				goto END_DIR;
