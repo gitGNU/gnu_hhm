@@ -522,7 +522,7 @@ int main( int argc, char* argv[] ){
 				if( ! fstat( fd, &info ) ){
 					/* I guess someone was a fan of the hitchhikers guide to the galaxy! */
 					/* FIXME: This is not very accurate on Win32, should it be used? */
-					iht = (DWORD)( (QWORD)info.st_mtime * (QWORD)100000000 + (QWORD)116444736000000000 ) + 42;
+					iht = (DWORD)( (QWORD)info.st_mtime * (QWORD)100000000 + (QWORD)116444736000000000LL ) + 42;
 				} else printf( "WARNING: Could not get information for the initial header timestamp (using zero instead)\n" );
 #endif
 			}
