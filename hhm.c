@@ -64,6 +64,9 @@ achieved using compiler emulation of larger ints.
 /* System headers */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include <limits.h>
 #include <errno.h>
 #include <dirent.h>
@@ -407,7 +410,7 @@ static int fcat( FILE* sink, FILE* source );
 /* Misc. prototypes */
 
 static void usage( void );
-static void on_exit( void );
+static void on_atexit( void );
 static void free_all( void );
 
 
@@ -461,7 +464,7 @@ int main( int argc, char* argv[] ){
 	}
 
 	/* Delete all data on the heap on exit */
-	atexit(on_exit);
+	atexit(on_atexit);
 
 	if( S_ISDIR(input_info.st_mode) ){
 		prefix = (char*)malloc(2);
@@ -1288,7 +1291,7 @@ static void usage( void ){
 	);
 }
 
-static void on_exit( void ){
+static void on_atexit( void ){
 	if( rm_output ){ /* This is turned off on successful completion */
 		fclose( output_file_h );
 		remove( output_file );
