@@ -1,6 +1,7 @@
 Mon, 07 Aug 2006 19:04:00 +0800 Paul Wise <pabs@zip.to>
 
 	* hhm.c: Apply patch by Patrice Dumas to reduce gcc warnings
+	* Makefile: add -Wall to CFLAGS to show potential problems
 
 Thu, 28 Apr 2005 14:39:39 +0800 Paul Wise <pabs@zip.to>
 

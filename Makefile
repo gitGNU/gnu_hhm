@@ -1,4 +1,4 @@
-CFLAGS=-g -DDEBUG -Ilzx_compress
+CFLAGS=-Wall -g -DDEBUG -Ilzx_compress
 LDFLAGS=-g -Llzx_compress
 LDLIBS=-llzxcomp -lm
 
