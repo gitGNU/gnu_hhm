@@ -1,0 +1,17 @@
+              hhm releases
+
+ 0.1.2 - August 27, 2006 - Minor fixes
+
+  * Fix warnings with newer GCC versions
+  * Now supports the timestamp in the ITSF header (more accurately on Win32)
+  * Now uses GetUserDefaultLCID for the ITSF header LCID on Win32
+
+ 0.1.1 - January 04, 2005 - GPL >= 2
+
+  * Switch to GPL version 2 or greater
+
+ 0.1 - August 27, 2002 - First release!
+
+  * First release!
+
+

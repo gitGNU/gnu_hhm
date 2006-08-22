@@ -8,10 +8,10 @@ all: hhm
 clean:
 	rm -f hhm hhm.exe core *.stackdump
 
-dist: README ChangeLog Makefile COPYING FAQ hhm.c TODO
+dist: README ChangeLog Makefile COPYING FAQ hhm.c TODO NEWS
 	rm -rf hhm-$(VERSION)
 	mkdir hhm-$(VERSION)
-	cp README ChangeLog Makefile COPYING FAQ hhm.c TODO hhm-$(VERSION)
+	cp README ChangeLog Makefile COPYING FAQ hhm.c TODO NEWS hhm-$(VERSION)
 	tar zcf hhm-$(VERSION).tar.gz hhm-$(VERSION)
 	rm -rf hhm-$(VERSION)
 

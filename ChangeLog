@@ -4,6 +4,8 @@ Tue, 22 Aug 2006 14:02:11 +0800 Paul Wise <pabs3@bonedaddy.net>
 
 	* Makefile: Add capability to make a source tarball
 
+	* NEWS: New file
+
 Mon, 07 Aug 2006 19:04:00 +0800 Paul Wise <pabs@zip.to>
 
 	* hhm.c: Apply patch by Patrice Dumas to reduce gcc warnings
