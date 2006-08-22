@@ -1287,7 +1287,7 @@ static void usage( void ){
 		"OR\n"
 		"Converts <project.hhp> into a .chm file (currently not implemented)\n"
 		"\n"
-		PROGNAME" "VERSION" (C) 2002 Pabs <pabs3@zip.to>\n"
+		PROGNAME" "VERSION" (C) 2002, 2005, 2006 Paul Wise\n"
 		"This is free software with ABSOLUTELY NO WARRANTY.\n"
 	);
 }
