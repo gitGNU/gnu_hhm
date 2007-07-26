@@ -659,11 +659,13 @@ int main( int argc, char* argv[] ){
 								deinit_level( level );
 								prev_chunk++;
 								if( level ) num_chunks_to_rewind++;
-								else last_listing_chunk = prev_chunk;
+								else{
+									last_listing_chunk = prev_chunk;
+									num_chunks_to_rewind = 1;
+								}
 								init_level( level );
 								level++;
 							} else if( level ){
-								num_chunks_to_rewind = 1;
 								coming_down = true;
 								level--;
 							}
