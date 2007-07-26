@@ -1169,7 +1169,9 @@ static uint add_item_to_chunk( uint level, item_t* item, ENCINT listing_chunk ){
 		return 1;
 
 	chunk = &dir_chunks[level];
-	req_space = 1 + item->name_len;
+
+	req_space = enc_int_len( listing_chunk );
+	req_space += item->name_len;
 
 	if( level ) {
 		req_space += enc_int_len( listing_chunk );
@@ -1200,7 +1202,7 @@ static uint add_item_to_chunk( uint level, item_t* item, ENCINT listing_chunk ){
 	}
 
 	/* Write directory index entry */
-	*(chunk->current_offset++) = item->name_len;
+	chunk->current_offset += write_enc_int( chunk->current_offset, item->name_len );
 	memcpy( chunk->current_offset, item->name, item->name_len );
 	chunk->current_offset += item->name_len;
 	if( level ) {
