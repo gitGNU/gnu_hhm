@@ -542,7 +542,10 @@ int main( int argc, char* argv[] ){
 					long content_offset;
 					int block_size = 1 << ws;
 
-					chdir( input );
+					if( 0 != chdir( input ) ){
+						printf( "ERROR: chdir failure\n" );
+						exit( -1 );
+					}
 
 					while( !at_eof( NULL ) ){
 						lzx_reset( lzxd );
@@ -552,7 +555,10 @@ int main( int argc, char* argv[] ){
 						}
 					}
 
-					chdir( ".." );
+					if( 0 != chdir( ".." ) ){
+						printf( "ERROR: chdir failure\n" );
+						exit( -1 );
+					}
 
 					if( lzx_finish( lzxd, &lzxr ) < 0 ){
 						printf( "ERROR: LZX deinitialisation failure\n" );
@@ -631,7 +637,7 @@ int main( int argc, char* argv[] ){
 					}
 
 					{ /* Output directory */
-						long num_chunks_to_rewind;
+						long num_chunks_to_rewind = 0;
 						bool full, coming_down = false;
 						size_t level = dir_chunks_len = 0;
 						current_file_i = 0;
@@ -808,7 +814,10 @@ static int add_dir_contents( char*d ){
 		struct stat st;
 		struct dirent* de;
 		while( ( de = readdir( dir ) ) ){
-			chdir( d );
+			if( 0 != chdir( d ) ){
+				printf( "ERROR: chdir error\n");
+				return -1;
+			}
 			if( !strcmp( de->d_name, "." ) || !strcmp( de->d_name, ".." ) )
 				goto END_DIR;
 			if( stat( de->d_name, &st ) != 0 ){
@@ -884,7 +893,10 @@ static int add_dir_contents( char*d ){
 			}
 			n++;
 END_DIR: /* Sorry about the gotos */
-			chdir( ".." );
+			if( 0 != chdir( ".." ) ){
+				printf( "ERROR: chdir error\n");
+				return -1;
+			}
 		}
 		closedir( dir );
 		return n;
