@@ -1,6 +1,6 @@
 Features:
 	Command line options (see below)
-	Get LCID from Unix
+	Get LCID from Unix using uloc_getLCID from libicu
 	HHP processing into CHM
 	Hard-linked files
 	Options used to expose assumptions in the Microsoft implementation

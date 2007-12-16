@@ -437,7 +437,7 @@ int main( int argc, char* argv[] ){
 #ifdef WIN32_LCID
 	ihl = GetUserDefaultLCID();
 #else
-	/* FIXME: Learn how to get the right LCID from Unix */
+	/* FIXME: get the user LCID from Unix using uloc_getLCID from libicu */
 #endif
 	if( !atl ){
 		SpanInfo_item.offset -= tlfs;
