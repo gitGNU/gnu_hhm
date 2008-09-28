@@ -1,3 +1,6 @@
+General:
+	switch to autotools for building
+
 Features:
 	Command line options (see below)
 	Get LCID from Unix using uloc_getLCID from libicu
