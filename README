@@ -57,6 +57,7 @@ cd ../lzx_compress
 make
 cd ../hhm
 ln -s lzx_compress ../lzx_compress
+./configure
 make
 mkdir foo-bar
 cd foo-bar
